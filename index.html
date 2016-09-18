@@ -28,6 +28,20 @@
                     }
                 },
 
+                // state is per component
+                getInitialState: function() {
+                    return {
+                        value: 1
+                    }
+                },
+
+                // will fire only once when the component mounted
+                componentDidMount: function() {
+                    this.setState({
+                        value: this.state.value + 19
+                    })
+                },
+
                 // conditionals inside the render of the child
                 render: function() {
                     let greeting = "World";
@@ -36,7 +50,13 @@
                         greeting = (<Person name={this.props.name} />);
                     }
 
-                    return <h1>Hello {greeting}</h1>
+                    // state can be returned
+                    return (
+                        <div>
+                            <h1>Hello {greeting}</h1>
+                            {this.state.value}
+                        </div>
+                    )
                 }
             });
 
