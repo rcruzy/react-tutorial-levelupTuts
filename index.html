@@ -37,8 +37,14 @@
 
                 // will fire only once when the component mounted
                 componentDidMount: function() {
+                    // content transfered to _addByOne function
+                },
+
+                // good practice to start custom methods with _
+                // to distinguish it from react methods
+                _addByOne: function() {
                     this.setState({
-                        value: this.state.value + 19
+                        value: this.state.value + 1
                     })
                 },
 
@@ -51,10 +57,14 @@
                     }
 
                     // state can be returned
+                    // this refers to the current component we are in
+                    // add the method inside {} w/o the parenthesis as it would
+                    // fire the function twice on load automatically
                     return (
                         <div>
                             <h1>Hello {greeting}</h1>
                             {this.state.value}
+                            <button onClick={this._addByOne}>Click Me</button>
                         </div>
                     )
                 }
