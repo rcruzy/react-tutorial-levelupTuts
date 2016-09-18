@@ -11,10 +11,38 @@
         <div id="area"></div>
         <script type="text/babel">
 
+            // this serves as the parent
             let HelloWorld = React.createClass({
 
                 // define type of property
                 // make it required -- isRequired
+                propTypes: {
+                    name: React.PropTypes.string,
+                    isPerson: React.PropTypes.bool
+                },
+
+                // will run before render
+                getDefaultProps: function() {
+                    return {
+                        name: 'Ryan'
+                    }
+                },
+
+                // conditionals inside the render of the child
+                render: function() {
+                    let greeting = "World";
+
+                    if (this.props.isPerson) {
+                        greeting = (<Person name={this.props.name} />);
+                    }
+
+                    return <h1>Hello {greeting}</h1>
+                }
+            });
+
+            // child
+            let Person = React.createClass({
+
                 propTypes: {
                     name: React.PropTypes.string.isRequired
                 },
@@ -27,12 +55,12 @@
                 },
 
                 render: function() {
-                    return <h1>Hello {this.props.name}</h1>
+                    return <span>{this.props.name}</span>
                 }
             });
 
             ReactDOM.render(
-                <HelloWorld />,
+                <HelloWorld name="Ryan" isPerson={true} />,
                 document.getElementById('area')
             );
         </script>
