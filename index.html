@@ -10,9 +10,24 @@
     <body>
         <div id="area"></div>
         <script type="text/babel">
+
             let HelloWorld = React.createClass({
-                render: () => {
-                    return <h1>Hello World</h1>
+
+                // define type of property
+                // make it required -- isRequired
+                propTypes: {
+                    name: React.PropTypes.string.isRequired
+                },
+
+                // will run before render
+                getDefaultProps: function() {
+                    return {
+                        name: 'Ryan'
+                    }
+                },
+
+                render: function() {
+                    return <h1>Hello {this.props.name}</h1>
                 }
             });
 
